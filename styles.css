@@ -92,16 +92,49 @@ header {
 }
 
 #advert {
+    display: block;
     padding: 20px;
     padding-bottom: 60px;
+    background: snow;
     position: relative;
+    text-align: left;
     margin: 10px;
-    text-align: center;
 }
 
-#advert img{
+#advert img {
     width: 40%;
+    display: block;
+    height: 250px;
+    margin: 10px;
     float: left;
+
+}
+
+#desc-block {
+    display: block;
+    background: aquamarine;
+    min-height: 250px;
+}
+#advert-info {
+    display: block;
+
+}
+#advert-cost {
+    display: block;
+}
+
+#advert-characters {
+    display: block;
+}
+
+#advert-cost span{
+    font-weight: bold;
+    font-size: 20px;
+}
+#advert-characters span{
+    font-weight: bold;
+    font-size: 20px;
+
 }
 
 #content {
@@ -120,6 +153,7 @@ header {
     margin: 5px;
 }
 footer {
+    display: block;
     width: 100%;
     height: 40px;
     clear: both;
@@ -167,7 +201,26 @@ footer {
 }
 .main-advert a:visited{
     text-decoration: none;
+}
 
+.buy-button {
+    padding: 12px 18px;
+    background: #01aaff;
+    color: #fff;
+    border-color: transparent;
+    box-sizing: border-box;
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+    font-family: Arial,'Helvetica Neue',Helvetica,sans-serif;
+    line-height: 16px;
+    border-radius: 3px;
+    vertical-align: middle;
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: 0;
 }
 
 
