@@ -85,6 +85,24 @@ header {
     /*background: #f7ffbc;*/
     text-align: center;
 }
+#search input {
+    border: #6bb8cc solid 2px;
+    border-radius: 3px;
+}
+#search-input {
+    width: 60%;
+    height: 25px;
+    vertical-align: top;
+    color: black;
+    font-size: 17px;
+}
+#search-button {
+    width: 80px;
+    height: 30px;
+    background: #6bb8cc;
+    color: black;
+    font-size: 17px;
+}
 #advert-board {
     display: flex;
     flex-wrap: wrap;
