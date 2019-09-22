@@ -158,7 +158,7 @@ header {
 #content {
     background: white;
     margin: 20px;
-    min-height: 500px;
+    min-height: 300px;
     padding: 20px;
 }
 #new_advert {
@@ -188,6 +188,30 @@ header {
 }
 #new_advert .form-file {
     border: none;
+}
+#profile {
+    display: block;
+    min-height: 250px;
+}
+#profile img {
+    border: white solid 5px;
+    display: inline-block;
+    float: left;
+    margin-right: 15px ;
+    max-height: 200px;
+}
+#profile-info {
+    padding: 10px;
+}
+#profile-other-adverts {
+    padding-left: 30px;
+}
+.profile-details {
+    font-size: 18px;
+}
+.profile-details-answer {
+    font-size: 18px;
+    font-weight: bold;
 }
 footer {
     display: block;
