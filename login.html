@@ -1,28 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Добро пожаловать!</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui, user-scalable=no">
-    <link href="styles.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link rel = "stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-<header>
-    <div class="header-item">
-        <a href="index.html">
-            Best garage store
-        </a>
+<div id="wrapper">
+    <div id="header-info">
+        <header>
+            <h2>Аукцион Гараж</h2>
+        </header>
+
+        <span id="menu">
+                <span id="main-left-menu">
+                    <a class="main-menu" href ='index.html'>Главная</a>
+                    <a class="main-menu" href ='new_advert.html'>Подать объявление</a>
+                    <a class="main-menu" href ='index.html'>Помощь</a>
+                </span>
+                <span id="autorization">
+                    <a class="main-menu" href ='login.html'>Войти</a>
+                    <a class="main-menu" href ='index.html'>Регистрация</a>
+                </span>
+            </span>
+        <hr>
+        <div id="search">
+            Здесь будет форма поиска
+        </div>
+        <hr>
     </div>
-    <div class="header-item">
-        <a href="product-create.html">
-            Разместить объявление
-        </a>
+    <div id="left-block">
+        <h3>Категории:</h3>
+        <hr>
+        <a href="index.html">Недвижимость</a><br>
+        <a href="index.html">Транспорт</a><br>
+        <a href="index.html">Работа</a><br>
+        <a href="index.html">Бытовая электроника</a><br>
+        <a href="index.html">Животные</a><br>
+        <a href="index.html">Хобби и отдых</a><br>
+        <a href="index.html">Для дома и дачи</a><br>
+
+
     </div>
-    <div class="header-item">
-        <a href="login.html">
-            Войти
-        </a>
+    <div id="container">
+        <span>Вход</span>
+        <span>Телефон</span>
+        <label>
+            <input placeholder="Телефон или Электронная почта">
+        </label>
+
+        <span>Пароль</span>
     </div>
-</header>
+    <footer> это футер</footer>
+</div>
 </body>
 </html>
