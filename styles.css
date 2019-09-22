@@ -60,6 +60,16 @@ header {
     line-height: 2;
 
 }
+#left-block a{
+    text-decoration: none;
+    color: white;
+}
+#left-block a:hover{
+    font-size: 18px;
+}
+#left-block a:active{
+    color:red;
+}
 #container {
     /*background: cyan;*/
     width: 80%;
@@ -67,6 +77,9 @@ header {
     float:right;
     min-height: 500px;
     min-width: 220px;
+}
+#container h2 {
+    text-align: center;
 }
 #search {
     /*background: #f7ffbc;*/
