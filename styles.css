@@ -120,11 +120,11 @@ header {
 }
 
 #advert img {
-    width: 40%;
-    display: block;
-    height: 250px;
-    margin: 10px;
+    border: white solid 5px;
+    display: inline-block;
     float: left;
+    margin-right: 15px ;
+    max-height: 200px;
 
 }
 
