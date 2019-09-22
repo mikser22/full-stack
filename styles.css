@@ -81,6 +81,9 @@ header {
 #container h2 {
     text-align: center;
 }
+#container h3 {
+    text-align: center;
+}
 #search {
     /*background: #f7ffbc;*/
     text-align: center;
@@ -137,28 +140,10 @@ header {
     display: block;
 
 }
-#advert-cost {
-    display: block;
-}
-
-#advert-characters {
-    display: block;
-}
-
-#advert-cost span{
-    font-weight: bold;
-    font-size: 20px;
-}
-#advert-characters span{
-    font-weight: bold;
-    font-size: 20px;
-
-}
-
 #content {
     background: white;
     margin: 20px;
-    min-height: 500px;
+    min-height: 300px;
     padding: 20px;
 }
 #new_advert {
@@ -205,6 +190,9 @@ header {
 }
 #profile-other-adverts {
     padding-left: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 .profile-details {
     font-size: 18px;
@@ -218,6 +206,20 @@ header {
     /*text-align: center;*/
 }
 
+.main-advert-information{
+    display: block;
+}
+
+.main-advert-information span{
+    font-weight: bold;
+    font-size: 20px;
+}
+.main-advert-information a {
+    color: black;
+}
+.main-advert-information a:hover {
+    color: red;
+}
 .login-label {
     height: 40px;
     font-size: 20px;
@@ -371,6 +373,9 @@ footer {
     }
     #autorization {
         float: none;
+    }
+    #profile img {
+        float:none;
     }
     .main-menu {
         display: block;
