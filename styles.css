@@ -137,6 +137,40 @@ header {
 
 }
 
+#content {
+    background: white;
+    margin: 20px;
+    min-height: 500px;
+    padding: 20px;
+}
+#new_advert {
+    margin: 3px;
+}
+#new_advert textarea{
+    border: #6bb8cc solid 1px;
+    width: 60%;
+    height: 75px;
+}
+#new_advert input{
+    border: #6bb8cc solid 1px;
+    height: 25px;
+    margin-top: 5px;
+}
+.radio-button {
+    margin-left: 20px;
+}
+#new_advert .submit-button {
+    height: 30px;
+    background: #6bb8cc;
+    color:black;
+    font-size: 16px;
+    border-radius: 3px;
+    margin: 5px 0;
+    padding: 0 10px;
+}
+#new_advert .form-file {
+    border: none;
+}
 footer {
     display: block;
     width: 100%;

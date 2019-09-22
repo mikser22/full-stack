@@ -39,9 +39,24 @@
 
         </div>
         <div id="container">
-            <h2>Новое объявление</h2>
-            <div>
-
+            <div id="content">
+                <h2>Новое объявление</h2>
+                <form id="new_advert">
+                    <label for="name">Введите название:</label><br>
+                    <input id="name"> <br><br>
+                    <label for="description">Описание:</label><br>
+                    <textarea id="description" name="description"></textarea><br><br>
+                    <label  for="file">Загрузить изображение:</label><br>
+                    <input class="form-file" type="file" name="file" id="file"><br><br>
+                    <label >Выберите тип:</label><br>
+                    <input class="radio-button" type="radio" name="type" required> объявление<br>
+                    <input class="radio-button" type="radio" name="type" required> аукцион<br><br>
+                    <label for="price">Начальная цена:</label><br>
+                    <input id="price"><br><br>
+                    <label for="phone">Телефон:</label><br>
+                    <input id="phone"><br><br>
+                    <input class="submit-button" type="submit" value="Подать объявление">
+                </form>
             </div>
         </div>
         <footer> это футер</footer>
