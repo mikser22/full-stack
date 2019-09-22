@@ -81,6 +81,9 @@ header {
 #container h2 {
     text-align: center;
 }
+#container h3 {
+    text-align: center;
+}
 #search {
     /*background: #f7ffbc;*/
     text-align: center;
@@ -137,7 +140,6 @@ header {
     display: block;
 
 }
-
 #content {
     background: white;
     margin: 20px;
@@ -188,6 +190,9 @@ header {
 }
 #profile-other-adverts {
     padding-left: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 .profile-details {
     font-size: 18px;
@@ -368,6 +373,9 @@ footer {
     }
     #autorization {
         float: none;
+    }
+    #profile img {
+        float:none;
     }
     .main-menu {
         display: block;
