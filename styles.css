@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: Helvetica Neue,Helvetica,sans-serif;
 }
 body {
     background: #c3defc;
@@ -152,31 +153,54 @@ a:active {
 }
 .new_advert {
     margin: 3px;
+    display: flex;
+    justify-content: space-around;
 }
-.new_advert textarea{
-    border: #6bb8cc solid 1px;
-    width: 60%;
-    height: 75px;
+.new_advert form {
+    background-color: white;
+    padding: 15px;
+    box-shadow: 0 0 5px rgba(0,0,0,1);
+
 }
-.new_advert input{
+.form-block {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.form-block label {
+    width: 200px;
+}
+.form-block input, textarea {
+    width: 200px;
+    height: 23px;
+    outline:none;
+    border-radius: 2px;
     border: #6bb8cc solid 1px;
-    height: 25px;
+    box-shadow: 0 0 5px #6bb8cc;
+}
+.form-block textarea {
+    height: 60px;
+}
+.form-block-file input{
     margin-top: 5px;
 }
-.radio-button {
-    margin-left: 20px;
+.form-block-radio {
+    display: block;
 }
-.new_advert .submit-button {
-    height: 30px;
+.form-block-radio input {
+    border: #6bb8cc solid 1px;
+    box-shadow: 0 0 5px #6bb8cc;
+    margin: 5px 0 5px 30px;
+}
+.submit-button {
+    height: 40px;
     background: #6bb8cc;
     color:black;
+    width: 100%;
     font-size: 16px;
-    border-radius: 3px;
-    margin: 5px 0;
+    border-radius: 7px;
+    margin: 5px 0 0 0;
     padding: 0 10px;
-}
-.new_advert .form-file {
-    border: none;
 }
 .profile {
     display: block;
@@ -235,7 +259,6 @@ a:active {
     /*alignment: center;*/
     margin-left: 25%;
     padding: 6px 10px;
-    font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
     color: #000;
     border-color: #ccc;
 }
@@ -398,6 +421,32 @@ footer {
     }
     .login-label input{
         width: 80%;
+    }
+    .new_advert form{
+        text-align: center;
+    }
+    .form-block {
+        display: block;
+        margin: 5px 0;
+     }
+    .form-block label {
+        display: block;
+        margin: 5px 0;
+    }
+    .form-block input, textarea {
+        display: block;
+        float: right;
+        margin: 3px 0 10px 0;
+    }
+    .form-block-file input{
+        display: block;
+        margin-bottom: 10px;
+    }
+    .form-block-radio {
+        text-align: left;
+    }
+    .form-block-radio input{
+        margin: 5px 0 0 15px
     }
 }
 
