@@ -1,4 +1,4 @@
-*{
+* {
   padding: 0;
   margin: 0;
   font-family: Helvetica Neue,Helvetica,sans-serif;
@@ -110,6 +110,7 @@ a:active {
   background: #6bb8cc;
   color: black;
   font-size: 17px;
+  margin-left: 7px;
 }
 .advert-board {
   display: flex;
@@ -449,4 +450,5 @@ footer {
     margin: 5px 0 0 15px
   }
 }
+
 

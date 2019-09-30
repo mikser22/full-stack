@@ -12,7 +12,7 @@ const Board: React.FC = () => {
                     <Link to="/advertpage">
                         <h3>Объявление</h3>
                         <img src={image} alt="kek" />
-                            <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
+                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
                     </Link>
                 </div>
                 <div className="main-advert">
