@@ -1,104 +1,29 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import image from '../../images/test_advert.jpg'
+import AdvertCard from "../AdvertCard";
 
 const Board: React.FC = () => {
-    return (
+    const [items, setItems] = React.useState<Item[]>([]);
 
+    React.useEffect(() => {
+        void itemsGet()
+    }, []);
+
+    const itemsGet = React.useCallback(async () => {
+        const response = await fetch('http://127.0.0.1:8000/api/garages');
+        const data = await response.json();
+        setItems(data.items);
+        console.log(items)
+    }, []);
+
+    return (
         <div className="container">
             <h2>Доска объявлений</h2>
             <div className="advert-board">
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
+                {
+                    items.map(item => (
+                        <AdvertCard item={item}/>
+                    ))
+                }
             </div>
         </div>
     )
