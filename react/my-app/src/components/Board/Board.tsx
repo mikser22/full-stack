@@ -9,9 +9,9 @@ const Board: React.FC = () => {
     }, []);
 
     const itemsGet = React.useCallback(async () => {
-        const response = await fetch('http://127.0.0.1:8000/api/garages');
+        const response = await fetch('http://localhost:3000/garages/');
         const data = await response.json();
-        setItems(data.items);
+        setItems(data);
         console.log(items)
     }, []);
 
@@ -21,7 +21,7 @@ const Board: React.FC = () => {
             <div className="advert-board">
                 {
                     items.map(item => (
-                        <AdvertCard item={item}/>
+                        <AdvertCard item={item} key={item.id}/>
                     ))
                 }
             </div>

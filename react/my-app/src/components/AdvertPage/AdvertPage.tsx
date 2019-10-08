@@ -1,8 +1,35 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import image from "../../images/svarit-garazh.jpg"
 
-const AdvertPage: React.FC = () => {
+interface AdvertPageProps {
+    item: Item,
+    match: {
+        params: {
+            id: number
+        }
+    }
+}
+
+const AdvertPage: React.FC<AdvertPageProps> = (props) => {
+
+    const [item, setItem] = React.useState<Item>({
+        id: -1,
+        name: "",
+        price: 0
+    });
+
+    useEffect(() => {
+        console.log(props.match);
+        void itemGet()
+    }, []);
+
+    const itemGet = React.useCallback(async () => {
+        const response = await fetch('http://localhost:3000/garages/' + props.match.params.id);
+        const data = await response.json();
+        setItem(data);
+    }, []);
+
     return (
         <div className="container">
             <h2>Garage</h2>
@@ -11,7 +38,7 @@ const AdvertPage: React.FC = () => {
                     <img src={image} alt="kek" />
                         <div className="advert-description">
                             <h2>Описание</h2>
-                            <p>Несмотря на то, что «Гараж» выпускают всего лишь с 2014 года, он уже приобрел поклонников
+                            <p>Несмотря на то, что {item.name} выпускают всего лишь с 2014 года, он уже приобрел поклонников
                                 в странах Западной Европы и СНГ. Напиток стал частью молодежной культуры, так что объем
                                 производства постоянно растет.
                             </p>
@@ -21,7 +48,7 @@ const AdvertPage: React.FC = () => {
                 <div className="advert-info">
                     <div className="main-advert-information">
                         <span>Цена:</span>
-                        10000000000000000000000000000000000000
+                        {item.price}
                     </div>
                     <div className="main-advert-information">
                         <span>Характеристики:</span>
