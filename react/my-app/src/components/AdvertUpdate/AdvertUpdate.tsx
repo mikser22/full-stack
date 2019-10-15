@@ -13,7 +13,7 @@ const AdvertCreate: React.FC<IProductUpdate> = (props) => {
     const onSubmit = React.useCallback(
         async (event) => {
             event.preventDefault()
-            await fetch('http://localhost:3000/garages/' + item.id, {
+            await fetch(`http://localhost:3000/garages/${item.id}`, {
                 method: 'put',
                 headers: {
                     'Content-Type': 'application/json'
