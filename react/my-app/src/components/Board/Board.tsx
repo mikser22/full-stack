@@ -1,5 +1,6 @@
 import React from 'react'
 import AdvertCard from "../AdvertCard";
+import {Item} from "../../types"
 
 const Board: React.FC = () => {
     const [items, setItems] = React.useState<Item[]>([]);

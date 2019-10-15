@@ -1,7 +1,9 @@
 import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import image from "../../images/svarit-garazh.jpg"
-
+import {Item} from "../../types"
+import Modal from "../Modal/Modal";
+import AdvertUpdate from "../AdvertUpdate"
 interface AdvertPageProps {
     item: Item,
     match: {
@@ -16,8 +18,10 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
     const [item, setItem] = React.useState<Item>({
         id: -1,
         name: "",
+        description: "lel",
         price: 0
     });
+    const [isModalOpen, toggleModal] = React.useState()
 
     useEffect(() => {
         console.log(props.match);
@@ -30,6 +34,20 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
         setItem(data);
     }, []);
 
+    const deleting = React.useCallback(
+        async (event) => {
+            event.preventDefault()
+            await fetch(`http://localhost:3000/garages/${props.match.params.id}`, {
+                method: 'delete',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: item.id })
+            })
+            window.history.back()
+        },
+        []
+    )
     return (
         <div className="container">
             <h2>Garage</h2>
@@ -65,7 +83,12 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
                         <span>Контакты:</span><br />
                         <Link to="/profile">Профиль пользователя</Link><br /><br />
                     </div>
-                    <Link to="/" className="buy-button">Купить</Link>
+                    <button className="buy-button" onClick={() => toggleModal(true)}>Изменить</button>
+                    {isModalOpen &&  <Modal toggleModal={() => toggleModal(false)}>
+                        <AdvertUpdate item={item} />
+                    </Modal>}
+                    <br />
+                    <Link to="/" className="buy-button" onClick={deleting} >Удалить</Link>
                 </div>
             </div>
         </div>

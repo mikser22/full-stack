@@ -1,6 +1,29 @@
 import React from 'react'
 
-const AdvertCreate: React.FC = () => {
+interface IProductCreate {
+    history: {
+        push: (url: string) => void
+    }
+}
+
+const AdvertCreate: React.FC<IProductCreate> = ({ history }) => {
+    const [name, setName] = React.useState('');
+    const [description, setDescription] = React.useState('');
+    const [price, setPrice] = React.useState('');
+    const onSubmit = React.useCallback(
+        async (event) => {
+            event.preventDefault()
+            await fetch('http://localhost:3000/garages', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, price, description, owner: 1 })
+            })
+            history.push('')
+        },
+        [name, price, description]
+    )
     return (
         <div className="container">
             <h2>Новое объявление</h2>
@@ -8,15 +31,18 @@ const AdvertCreate: React.FC = () => {
                 <form>
                     <div className="form-block">
                         <label htmlFor="form-name">Введите название:</label>
-                        <input id="form-name" required name="name" />
+                        <input id="form-name" required name="name" value = {name}
+                               onChange={(event) => setName(event.target.value)}/>
                     </div>
                     <div className="form-block">
                         <label htmlFor="form-description">Описание:</label>
-                        <textarea id="form-description" name="description" required/>
+                        <textarea id="form-description" name="description" required value = {description}
+                                  onChange={(event) => setDescription(event.target.value)}/>
                     </div>
                     <div className="form-block">
                         <label htmlFor="form-price">Начальная цена:</label>
-                        <input id="form-price" name="price" />
+                        <input id="form-price" name="price" value = {price}
+                               onChange={(event) => setPrice(event.target.value)}/>
                     </div>
                     <div className="form-block">
                         <label htmlFor="form-phone">Телефон:</label>
@@ -32,7 +58,8 @@ const AdvertCreate: React.FC = () => {
                             <input className="radio-button" type="radio" name="type" required /> аукцион<br />
                         </label>
                     </div>
-                    <input className="submit-button" type="submit" value="Подать объявление" name="button" />
+                    <input className="submit-button" type="submit" value="Подать объявление" name="button"
+                            onClick={onSubmit}/>
                 </form>
             </section>
         </div>
