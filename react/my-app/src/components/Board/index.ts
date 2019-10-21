@@ -4,7 +4,7 @@ import Board from "./Board";
 
 function mapStateToProps(state: any) {
     return {
-        advertList: state.adverts.adverts
+        advertList: state.adverts.advertList
     }
 }
 
