@@ -1,15 +1,15 @@
 import React from 'react'
 import {Link} from "react-router-dom";
 import image from "../../images/test_advert.jpg"
-import {Item} from "../../types"
 
-interface AdvertCardProps {
+interface IAdvertCard {
     item: Item
+
 }
 
-const AdvertCard: React.FC<AdvertCardProps> = (props) => {
-
-    const {id, name, price, description} = props.item;
+const AdvertCard: React.FC<IAdvertCard> = (props) => {
+    const {item} = props;
+    const {id, name, price, description} = item;
 
     return (
         <div className="main-advert">

@@ -1,4 +1,5 @@
 import React from 'react'
+import {Provider} from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header'
 import LeftMenu from "./components/LeftMenu";
@@ -8,23 +9,26 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import AdvertCreate from "./components/AdvertCreate";
 import './index.css';
+import initStore from "./store";
 
 
 const App: React.FC = () => {
   return (
-      <div className='wrapper'>
-          <Router>
-              <Header />
-              <LeftMenu />
-              <Route path="/" exact component={Board} />
-              <Route path="/advertpage/:id" component={AdvertPage} />
-              <Route path="/login" component={Login} />
-              <Route path="/registration" component={Login} />
-              <Route path="/profile" component={Profile} />
-              <Route path="/advertcreate" component={AdvertCreate} />
-              <footer> &#169; 2019</footer>
-          </Router>
-      </div>
+      <Provider store={initStore()}>
+          <div className='wrapper'>
+              <Router>
+                  <Header />
+                  <LeftMenu />
+                  <Route path="/" exact component={Board} />
+                  <Route path="/advertpage/:id" component={AdvertPage} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/registration" component={Login} />
+                  <Route path="/profile" component={Profile} />
+                  <Route path="/advertcreate" component={AdvertCreate} />
+                  <footer> &#169; 2019</footer>
+              </Router>
+          </div>
+      </Provider>
   )
 };
 

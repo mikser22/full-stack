@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import image from "../../images/svarit-garazh.jpg"
-import {Item} from "../../types"
 import Modal from "../Modal/Modal";
 import AdvertUpdate from "../AdvertUpdate"
 interface AdvertPageProps {

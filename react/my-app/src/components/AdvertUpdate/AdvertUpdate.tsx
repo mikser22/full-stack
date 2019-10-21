@@ -1,5 +1,4 @@
 import React from 'react'
-import {Item} from "../../types"
 
 interface IProductUpdate {
     item: Item
