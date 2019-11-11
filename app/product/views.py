@@ -1,14 +1,11 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Product
-from .serializers import ProductSerializer, ConstProductSerializer
+from .serializers import ProductSerializer
 
-class ProductViewSet(viewsets.ModelViewSet):
+class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
-    serializer_class = ConstProductSerializer
-
-    def perform_create(self, serializer):
-            serializer.save(owner=self.request.user)
+    serializer_class = ProductSerializer
 
 
 class ProductSelfViewSet(viewsets.ModelViewSet):
