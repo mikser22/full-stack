@@ -20,9 +20,9 @@ from user_info.views import InfoViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('products', ProductViewSet)
-router.register('my', ProductSelfViewSet)
-router.register('info', InfoViewSet)
+router.register('products', ProductViewSet, 'Product')
+router.register('my', ProductSelfViewSet, 'My')
+router.register('info', InfoViewSet, 'Info')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

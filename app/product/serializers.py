@@ -9,3 +9,12 @@ class ProductSerializer(serializers.ModelSerializer):
     model = Product
     fields = ('id', 'name', 'price', 'description', 'creation_date', 'on_auction', 'owner')
     read_only_fields = ('owner',)
+
+
+class ConstProductSerializer(serializers.ModelSerializer):
+  owner = UserSerializer(read_only=True)
+
+  class Meta:
+    model = Product
+    fields = ('id', 'name', 'price', 'description', 'creation_date', 'on_auction', 'owner')
+    read_only_fields = fields
