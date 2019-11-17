@@ -1,25 +1,30 @@
 import React from 'react'
 
-interface IProductCreate {
+interface IAdvertCreate {
     history: {
         push: (url: string) => void
-    }
+    },
+    adverts: any,
+    fetchNewAdvert : (advert : Item) => void,
 }
 
-const AdvertCreate: React.FC<IProductCreate> = ({ history }) => {
+const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
+    const {history, fetchNewAdvert} = props;
     const [name, setName] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [price, setPrice] = React.useState('');
     const onSubmit = React.useCallback(
         async (event) => {
             event.preventDefault()
-            await fetch('http://localhost:3000/garages', {
+            const response = await fetch('http://localhost:3000/garages', {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ name, price, description, owner: 1 })
             })
+            const data = await response.json();
+            fetchNewAdvert(data);
             history.push('')
         },
         [name, price, description]

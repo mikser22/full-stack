@@ -5,15 +5,17 @@ import Modal from "../Modal/Modal";
 import AdvertUpdate from "../AdvertUpdate"
 interface AdvertPageProps {
     item: Item,
+    adverts: any,
     match: {
         params: {
             id: number
         }
-    }
+    },
+    deleteAdvert : (advert : number) => void,
 }
 
 const AdvertPage: React.FC<AdvertPageProps> = (props) => {
-
+    const {adverts, deleteAdvert} = props;
     const [item, setItem] = React.useState<Item>({
         id: -1,
         name: "",
@@ -22,21 +24,28 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
     });
     const [isModalOpen, toggleModal] = React.useState()
 
+
     useEffect(() => {
-        console.log(props.match);
         void itemGet()
     }, []);
 
     const itemGet = React.useCallback(async () => {
-        const response = await fetch('http://localhost:3000/garages/' + props.match.params.id);
-        const data = await response.json();
+        let data;
+        if(adverts.adverts.len > 0) {
+            const myId = adverts.advertList[props.match.params.id];
+            data = adverts.adverts[myId];
+        } else {
+            const response = await fetch('http://localhost:3000/garages/' + props.match.params.id);
+            data = await response.json();
+        }
+
         setItem(data);
     }, []);
-
     const deleting = React.useCallback(
         async (event) => {
-            event.preventDefault()
-            await fetch(`http://localhost:3000/garages/${props.match.params.id}`, {
+            event.preventDefault();
+            deleteAdvert(props.match.params.id);
+            const response = await fetch(`http://localhost:3000/garages/${props.match.params.id}`, {
                 method: 'delete',
                 headers: {
                     'Content-Type': 'application/json'
@@ -55,10 +64,8 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
                     <img src={image} alt="kek" />
                         <div className="advert-description">
                             <h2>Описание</h2>
-                            <p>Несмотря на то, что {item.name} выпускают всего лишь с 2014 года, он уже приобрел поклонников
-                                в странах Западной Европы и СНГ. Напиток стал частью молодежной культуры, так что объем
-                                производства постоянно растет.
-                            </p>
+                            <p>{item.name}</p>
+                            <p>{item.description}</p>
 
                         </div>
                 </div>

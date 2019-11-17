@@ -1,48 +1,43 @@
 {
   "garages": [
     {
-      "id": 2,
-      "name": "garage8",
-      "description": "Ну купи гараж, плез",
-      "price": 9075
-    },
-    {
-      "id": 3,
-      "name": "garage9",
-      "description": "Ну купи гараж, плез",
-      "price": 5679875
-    },
-    {
       "name": "Миша",
       "price": "отл(8)",
       "description": "Продам Мишу, за отл(8)",
-      "owner": 1,
       "id": 4
     },
     {
-      "id": 5,
       "name": "Куплю стиралку",
-      "description": "Куплю стиралку, желательно в девятке",
-      "price": 10000
+      "price": "10000",
+      "description": "Куплю стиралку, желательно в девятке.",
+      "id": 5
     },
     {
-      "id": 6,
       "name": "Отдам даром",
+      "price": "0",
       "description": "Отдам соседа Даром",
-      "price": 0
+      "id": 6
     },
     {
-      "name": "sdf",
-      "price": "",
-      "description": "d",
+      "name": "продам",
+      "price": "1000",
+      "description": "продам фигню ненужную",
       "owner": 1,
-      "id": 7
+      "id": 10
     },
     {
-      "name": "kek",
-      "price": "227",
-      "description": "lol",
-      "id": 8
+      "name": "куплю",
+      "price": "50",
+      "description": "куплю ченить",
+      "owner": 1,
+      "id": 11
+    },
+    {
+      "name": "new advert",
+      "price": "4555$",
+      "description": "new description",
+      "owner": 1,
+      "id": 20
     }
   ]
 }
