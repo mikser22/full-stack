@@ -4,20 +4,20 @@ import store from "../../store";
 interface IProductUpdate {
     item: Item
     fetchAdvert : (advert : Item) => void
-    history: {
-        push: (url: string) => void
-    },
+    toggleModal: (flag:boolean) => void
+    itemGet : (a:void) => void
 }
 
 const AdvertCreate: React.FC<IProductUpdate> = (props) => {
-    const {item, fetchAdvert, history} = props;
+    const {item, fetchAdvert, toggleModal, itemGet} = props;
     const [name, setName] = React.useState(item.name);
     const [description, setDescription] = React.useState(item.description);
     const [price, setPrice] = React.useState(item.price+'');
     const onSubmit = React.useCallback(
         async (event) => {
             event.preventDefault()
-            const id:number = item.id
+            const id:number = item.id;
+
             const response = await fetch(`http://localhost:3000/garages/${id}`, {
                 method: 'put',
                 headers: {
@@ -25,9 +25,10 @@ const AdvertCreate: React.FC<IProductUpdate> = (props) => {
                 },
                 body: JSON.stringify({ name, price, description})
             })
-            const data = await response.json();
+            const data: Item = await response.json();
             fetchAdvert(data);
-            window.location.assign(`/advertpage/${id}`)
+            toggleModal(false);
+            itemGet();
         },
         [name, price, description]
     )

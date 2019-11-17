@@ -27,16 +27,14 @@
     },
     {
       "name": "куплю",
-      "price": "50",
+      "price": "500",
       "description": "куплю ченить",
-      "owner": 1,
       "id": 11
     },
     {
       "name": "new advert",
-      "price": "4555$",
+      "price": "4578",
       "description": "new description",
-      "owner": 1,
       "id": 20
     }
   ]

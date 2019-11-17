@@ -90,8 +90,8 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
                         <Link to="/profile">Профиль пользователя</Link><br /><br />
                     </div>
                     <button className="buy-button" onClick={() => toggleModal(true)}>Изменить</button>
-                    {isModalOpen &&  <Modal toggleModal={() => toggleModal(false)}>
-                        <AdvertUpdate item={item} />
+                    {isModalOpen &&  <Modal toggleModal={() => toggleModal(false) }>
+                        <AdvertUpdate item={item} toggleModal={toggleModal} itemGet={itemGet}/>
                     </Modal>}
                     <br />
                     <Link to="/" className="buy-button" onClick={deleting} >Удалить</Link>
