@@ -17,7 +17,7 @@ const AdvertCreate: React.FC<IProductUpdate> = (props) => {
             event.preventDefault()
             const id:number = item.id;
 
-            const response = await fetch(`${BASEURL}api/products/${id}`, {
+            const response = await fetch(`${BASEURL}api/products/${id}/`, {
                 method: 'put',
                 headers: {
                     'Content-Type': 'application/json'

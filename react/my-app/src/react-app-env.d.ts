@@ -4,7 +4,7 @@ interface Item {
     name: string,
     description: string,
     price: any,
-    auction: boolean
+    on_auction: boolean
 }
 
 interface IAdvertState {

@@ -67,7 +67,7 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
                         </div>
                 </div>
                 <div className="advert-info">
-                    {!advert.auction? <div className="main-advert-information"><span>Цена:</span>{advert.price}</div> :
+                    {!advert.on_auction? <div className="main-advert-information"><span>Цена:</span>{advert.price}</div> :
                     <Auction currentPrice={150} lastPersonId={2} startPriсe={100} endDate={"12.12.2019 00:00"}/>}
                     <div className="main-advert-information">
                         <span>Характеристики:</span>

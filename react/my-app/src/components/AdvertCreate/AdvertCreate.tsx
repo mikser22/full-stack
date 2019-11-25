@@ -15,7 +15,7 @@ const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
     const [name, setName] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [price, setPrice] = React.useState('');
-    const [auction, setAuction] = React.useState('');
+    const [on_auction, setAuction] = React.useState('');
     const [category, setCategory] = React.useState('');
     const onSubmit = React.useCallback(
         async (event) => {
@@ -25,13 +25,13 @@ const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, price, description, owner: 1 , auction})
+                body: JSON.stringify({ name, price, description, owner: 1 , on_auction})
             })
             const data = await response.json();
             fetchNewAdvert(data);
             history.push('')
         },
-        [category, auction, name, price, description]
+        [category, on_auction, name, price, description]
     )
     return (
         <div className="container">
