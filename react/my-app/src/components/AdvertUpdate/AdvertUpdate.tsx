@@ -1,15 +1,14 @@
 import React from 'react'
-import store from "../../store";
+import {BASEURL} from "../../config";
 
 interface IProductUpdate {
-    item: Item
     fetchAdvert : (advert : Item) => void
     toggleModal: (flag:boolean) => void
-    itemGet : (a:void) => void
+    advert: Item
 }
 
 const AdvertCreate: React.FC<IProductUpdate> = (props) => {
-    const {item, fetchAdvert, toggleModal, itemGet} = props;
+    const {advert: item, fetchAdvert, toggleModal} = props;
     const [name, setName] = React.useState(item.name);
     const [description, setDescription] = React.useState(item.description);
     const [price, setPrice] = React.useState(item.price+'');
@@ -18,7 +17,7 @@ const AdvertCreate: React.FC<IProductUpdate> = (props) => {
             event.preventDefault()
             const id:number = item.id;
 
-            const response = await fetch(`http://localhost:3000/garages/${id}`, {
+            const response = await fetch(`${BASEURL}api/products/${id}`, {
                 method: 'put',
                 headers: {
                     'Content-Type': 'application/json'
@@ -28,7 +27,6 @@ const AdvertCreate: React.FC<IProductUpdate> = (props) => {
             const data: Item = await response.json();
             fetchAdvert(data);
             toggleModal(false);
-            itemGet();
         },
         [name, price, description]
     )

@@ -14,6 +14,7 @@ export function fetchAdverts(adverts: Item[]) {
 }
 
 export function fetchAdvert(advert: Item) {
+    console.log(advertNormalize(advert))
     return {
         type: FETCH_ADVERT,
         payload: advertNormalize(advert)

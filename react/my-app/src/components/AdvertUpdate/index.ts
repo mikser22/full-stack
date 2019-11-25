@@ -5,7 +5,8 @@ import {fetchAdvert} from "../../actions/adverts";
 function mapStateToProps(state: any, props: any) {
     return {
         ...state,
-        ...props
+        ...props,
+        advert: state.adverts.adverts[props.id]
     }
 }
 

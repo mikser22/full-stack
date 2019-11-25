@@ -3,25 +3,21 @@ import { Link } from 'react-router-dom'
 import image from "../../images/svarit-garazh.jpg"
 import Modal from "../Modal/Modal";
 import AdvertUpdate from "../AdvertUpdate"
+import {BASEURL} from "../../config";
+
 interface AdvertPageProps {
-    item: Item,
-    adverts: any,
     match: {
         params: {
             id: number
         }
     },
+    advert: Item
     deleteAdvert : (advert : number) => void,
+    fetchAdvert: (advert: Item) => void
 }
 
 const AdvertPage: React.FC<AdvertPageProps> = (props) => {
-    const {adverts, deleteAdvert} = props;
-    const [item, setItem] = React.useState<Item>({
-        id: -1,
-        name: "",
-        description: "lel",
-        price: 0
-    });
+    const { deleteAdvert, advert, fetchAdvert} = props;
     const [isModalOpen, toggleModal] = React.useState()
 
 
@@ -30,32 +26,32 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
     }, []);
 
     const itemGet = React.useCallback(async () => {
-        let data;
-        if(adverts.adverts.len > 0) {
-            const myId = adverts.advertList[props.match.params.id];
-            data = adverts.adverts[myId];
-        } else {
-            const response = await fetch('http://localhost:3000/garages/' + props.match.params.id);
-            data = await response.json();
+        if (!advert) {
+            const response = await fetch(`${BASEURL}api/products/` + props.match.params.id);
+            const data = await response.json();
+            fetchAdvert(data)
         }
 
-        setItem(data);
     }, []);
     const deleting = React.useCallback(
         async (event) => {
             event.preventDefault();
             deleteAdvert(props.match.params.id);
-            const response = await fetch(`http://localhost:3000/garages/${props.match.params.id}`, {
+            const response = await fetch(`${BASEURL}api/products/${props.match.params.id}`, {
                 method: 'delete',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ id: item.id })
+                body: JSON.stringify({ id: props.match.params.id })
             })
             window.history.back()
         },
         []
     )
+    if (!advert) {
+        return <div>loading</div>
+    }
+
     return (
         <div className="container">
             <h2>Garage</h2>
@@ -64,15 +60,15 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
                     <img src={image} alt="kek" />
                         <div className="advert-description">
                             <h2>Описание</h2>
-                            <p>{item.name}</p>
-                            <p>{item.description}</p>
+                            <p>{advert.name}</p>
+                            <p>{advert.description}</p>
 
                         </div>
                 </div>
                 <div className="advert-info">
                     <div className="main-advert-information">
                         <span>Цена:</span>
-                        {item.price}
+                        {advert.price}
                     </div>
                     <div className="main-advert-information">
                         <span>Характеристики:</span>
@@ -91,7 +87,7 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
                     </div>
                     <button className="buy-button" onClick={() => toggleModal(true)}>Изменить</button>
                     {isModalOpen &&  <Modal toggleModal={() => toggleModal(false) }>
-                        <AdvertUpdate item={item} toggleModal={toggleModal} itemGet={itemGet}/>
+                        <AdvertUpdate toggleModal={toggleModal} id={props.match.params.id}/>
                     </Modal>}
                     <br />
                     <Link to="/" className="buy-button" onClick={deleting} >Удалить</Link>

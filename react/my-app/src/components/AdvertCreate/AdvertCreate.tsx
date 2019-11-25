@@ -1,4 +1,5 @@
 import React from 'react'
+import {BASEURL} from "../../config";
 
 interface IAdvertCreate {
     history: {
@@ -16,7 +17,7 @@ const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
     const onSubmit = React.useCallback(
         async (event) => {
             event.preventDefault()
-            const response = await fetch('http://localhost:3000/garages', {
+            const response = await fetch(`${BASEURL}api/products/`, {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
