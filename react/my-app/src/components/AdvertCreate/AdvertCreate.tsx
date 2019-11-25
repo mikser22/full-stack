@@ -25,7 +25,7 @@ const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, price, description, owner: 1 })
+                body: JSON.stringify({ name, price, description, owner: 1 , auction})
             })
             const data = await response.json();
             fetchNewAdvert(data);

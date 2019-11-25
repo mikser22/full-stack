@@ -264,7 +264,7 @@ a:active {
   color: black;
 }
 .main-advert-information a:hover {
-  color: red;
+  color: #01aaff;
 }
 .login-label {
   height: 40px;
@@ -356,6 +356,9 @@ footer {
   cursor: pointer;
   outline: 0;
 }
+.buy-button:hover{
+  font-size: 23px;
+}
 
 .enter-button {
   padding: 12px 18px;
@@ -379,7 +382,42 @@ footer {
   cursor: pointer;
   outline: 0;
 }
-
+.auction{
+  border: #01aaff 1px solid;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.auction-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  height: 30px;
+  font-size: 20px;
+}
+.auction a{
+  color: black;
+}
+.auction a:hover{
+  color: #01aaff;
+}
+.auction-price{
+  font-size: 23px;
+}
+.auction-price-input{
+  width: 60px;
+  height: 40px;
+  font-size: 23px;
+  text-align: center;
+  border: #01aaff 1px solid;
+}
+.auction-date{
+  color: #ff000e;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+  margin: 30px;
+}
 
 @media screen and (max-width: 970px) {
   .main-left-menu {

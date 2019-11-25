@@ -3,7 +3,8 @@ interface Item {
     id: number,
     name: string,
     description: string,
-    price: any
+    price: any,
+    auction: boolean
 }
 
 interface IAdvertState {
