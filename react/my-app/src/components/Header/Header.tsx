@@ -11,7 +11,7 @@ const Header: React.FC = () => {
             <span className="menu">
                 <span className="main-left-menu">
                     <Link className="main-menu" to="/">Главная</Link>
-                    <Link className="main-menu" to="/advertcreate">Подать объявление</Link>
+                    <Link className="main-menu" to="/advertcreate">Создать объявление</Link>
                     <a className="main-menu" href='https://ru.wikipedia.org/wiki/Помощь' target="_blank">Помощь</a>
                 </span>
                 <span className="autorization">

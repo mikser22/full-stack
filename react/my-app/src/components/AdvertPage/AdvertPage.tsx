@@ -29,6 +29,7 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
         if (!advert) {
             const response = await fetch(`${BASEURL}api/products/` + props.match.params.id);
             const data = await response.json();
+            console.log("advert page", data)
             fetchAdvert(data)
         }
 
@@ -54,13 +55,12 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
 
     return (
         <div className="container">
-            <h2>Garage</h2>
+            <h2>{advert.name}</h2>
             <div className="advert">
                 <div className="desc-block">
                     <img src={image} alt="kek" />
                         <div className="advert-description">
                             <h2>Описание</h2>
-                            <p>{advert.name}</p>
                             <p>{advert.description}</p>
 
                         </div>

@@ -16,8 +16,6 @@ export default function(state = initialState, action: any) {
                 }
             };
         case FETCH_NEW_ADVERT:
-            console.log("state", state);
-            console.log("action", action);
             return {
                 adverts: {
                     ...state.adverts,

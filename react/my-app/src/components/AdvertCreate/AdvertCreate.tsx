@@ -1,5 +1,6 @@
 import React from 'react'
 import {BASEURL} from "../../config";
+import {Link} from "react-router-dom";
 
 interface IAdvertCreate {
     history: {
@@ -14,9 +15,11 @@ const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
     const [name, setName] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [price, setPrice] = React.useState('');
+    const [auction, setAuction] = React.useState('');
+    const [category, setCategory] = React.useState('');
     const onSubmit = React.useCallback(
         async (event) => {
-            event.preventDefault()
+            event.preventDefault() // из-за этого не работает проверка важных полей
             const response = await fetch(`${BASEURL}api/products/`, {
                 method: 'post',
                 headers: {
@@ -28,7 +31,7 @@ const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
             fetchNewAdvert(data);
             history.push('')
         },
-        [name, price, description]
+        [category, auction, name, price, description]
     )
     return (
         <div className="container">
@@ -36,35 +39,56 @@ const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
             <section className="new_advert">
                 <form>
                     <div className="form-block">
-                        <label htmlFor="form-name">Введите название:</label>
-                        <input id="form-name" required name="name" value = {name}
-                               onChange={(event) => setName(event.target.value)}/>
-                    </div>
-                    <div className="form-block">
-                        <label htmlFor="form-description">Описание:</label>
-                        <textarea id="form-description" name="description" required value = {description}
-                                  onChange={(event) => setDescription(event.target.value)}/>
-                    </div>
-                    <div className="form-block">
-                        <label htmlFor="form-price">Начальная цена:</label>
-                        <input id="form-price" name="price" value = {price}
-                               onChange={(event) => setPrice(event.target.value)}/>
-                    </div>
-                    <div className="form-block">
-                        <label htmlFor="form-phone">Телефон:</label>
-                        <input id="form-phone" name="phone" />
-                    </div>
-                    <div className="form-block form-block-file">
-                        <label htmlFor="form-file">Загрузить<br />изображение:</label>
-                        <input className="form-file" type="file" name="file" id="form-file" />
-                    </div>
-                    <div className="form-block-radio">
-                        <label>Выберите тип:<br />
-                            <input className="radio-button" type="radio" name="type" required /> объявление<br />
-                            <input className="radio-button" type="radio" name="type" required /> аукцион<br />
+                        <label htmlFor="form-name">Введите название:<br />
+                            <input id="form-name" placeholder="Название объявления" required name="name" value = {name}
+                                   onChange={(event) => setName(event.target.value)}/>
                         </label>
                     </div>
-                    <input className="submit-button" type="submit" value="Подать объявление" name="button"
+                    <div className="form-block">
+                        <label htmlFor="form-description">Описание:<br />
+                            <textarea id="form-description" placeholder="Описание объявления" name="description" required value = {description}
+                                      onChange={(event) => setDescription(event.target.value)}/>
+                        </label>
+                    </div>
+                    <div className="form-block">
+                        <label htmlFor="form-category">Категория:<br />
+                            <select id="selector" required >
+                                <option selected disabled >Выберите категорию</option>
+                                <option value="Недвижимость" >Недвижимость</option>
+                                <option value="Транспорт">Транспорт</option>
+                                <option value="Работа">Работа</option>
+                                <option value="Бытовая электроника">Бытовая электроника</option>
+                                <option value="Животные">Животные</option>
+                                <option value="Хобби и отдых">Хобби и отдых</option>
+                                <option value="Для дома и дачи">Для дома и дачи</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div className="form-block">
+                        <label htmlFor="form-price" >Начальная цена:<br />
+                            <input id="form-price" placeholder="цена" name="price" value = {price}
+                                   onChange={(event) => setPrice(event.target.value)}/>
+                        </label>
+                    </div>
+                    <div className="form-block">
+                        <label htmlFor="form-phone">Телефон:<br />
+                            <input id="form-phone" name="phone" placeholder="ваш телефон" />
+                        </label>
+                    </div>
+                    <div className="form-block form-block-file">
+                        <label htmlFor="form-file">Загрузить изображение:<br />
+                            <input className="form-file" type="file" name="file" id="form-file" />
+                        </label>
+                    </div>
+                    <div className="form-block-radio">
+                        <label className="form-block-radio-main-label" >Выберите тип:<br />
+                            <label><input className="radio-button" type="radio" name="type" required value="0"
+                                          onChange={(event) => setAuction(event.target.value)}/> объявление</label><br />
+                            <label><input className="radio-button" type="radio" name="type" required value="1"
+                                          onChange={(event) => setAuction(event.target.value)}/> аукцион</label><br />
+                        </label>
+                    </div>
+                    <input className="submit-button" type="submit" value="Создать объявление" name="button"
                             onClick={onSubmit}/>
                 </form>
             </section>
