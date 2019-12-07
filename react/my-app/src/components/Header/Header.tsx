@@ -16,7 +16,7 @@ const Header: React.FC = () => {
                 </span>
                 <span className="autorization">
                     <Link className="main-menu" to="/login">Войти</Link>
-                    <Link className="main-menu" to="/login">Регистрация</Link>
+                    <Link className="main-menu" to="/registration">Регистрация</Link>
                 </span>
             </span>
             <hr/>
