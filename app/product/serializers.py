@@ -3,7 +3,7 @@ from .models import Product
 from core.serializers import UserSerializer
 
 class ProductSerializer(serializers.ModelSerializer):
-#   owner = UserSerializer(read_only=True)
+  owner = UserSerializer()#read_only=True)
 
   class Meta:
     model = Product
