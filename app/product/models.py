@@ -7,6 +7,7 @@ class Product(models.Model):
     price = models.IntegerField(default=0)
     description = models.TextField()
     creation_date = models.DateField()
+    category = models.IntegerField(default=0)
     on_auction = models.IntegerField(default=0)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 

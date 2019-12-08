@@ -21,6 +21,7 @@ const App: React.FC = () => {
                   <Header />
                   <LeftMenu />
                   <Route path="/" exact component={Board} />
+                  <Route path="/category/:id" exact component={Board} />
                   <Route path="/advertpage/:id" component={AdvertPage} />
                   <Route path="/login" component={Login} />
                   <Route path="/registration" component={Registration} />

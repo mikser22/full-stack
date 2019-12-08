@@ -6,13 +6,13 @@ const LeftMenu: React.FC = () => {
         <div className="left-block">
             <h3>Категории:</h3>
             <hr/>
-            <Link to="/">Недвижимость</Link><br/>
-            <Link to="/">Транспорт</Link><br/>
-            <Link to="/">Работа</Link><br/>
-            <Link to="/">Бытовая электроника</Link><br/>
-            <Link to="/">Животные</Link><br/>
-            <Link to="/">Хобби и отдых</Link><br/>
-            <Link to="/">Для дома и дачи</Link><br/>
+            <Link to="/category/1">Недвижимость</Link><br/>
+            <Link to="/category/2">Транспорт</Link><br/>
+            <Link to="/category/3">Работа</Link><br/>
+            <Link to="/category/4">Бытовая электроника</Link><br/>
+            <Link to="/category/5">Животные</Link><br/>
+            <Link to="/category/6">Хобби и отдых</Link><br/>
+            <Link to="/category/7">Для дома и дачи</Link><br/>
         </div>
     )
 };

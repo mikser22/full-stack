@@ -7,21 +7,34 @@ interface IBoardProps {
     fetchAdverts: (adverts : Item[]) => void
     advertList: number[],
     adverts: any
+    match: {
+        params: {
+            id: number
+        }
+    },
 
 }
 
 const Board: React.FC<IBoardProps> = (props) => {
-    const {fetchAdverts, advertList, adverts} = props;
-    React.useEffect(() => {
-        void itemsGet()
-    }, []);
+    const {fetchAdverts, advertList} = props;
 
-    const itemsGet = React.useCallback(async () => {
-        if(advertList.length == 0) {
-            const response = await fetch(`${BASEURL}api/products/`);
+    React.useEffect(() => {
+        void itemsGet(props.match.params.id)
+
+    }, [props.match.params.id]);
+
+    const itemsGet = React.useCallback(async (id) => {
+        let response;
+        if(id){
+            response = await fetch(`${BASEURL}api/category?id=${id}`);
+            const data = await response.json();
+            fetchAdverts(data)
+        } else {
+            response = await fetch(`${BASEURL}api/products/`);
             const data = await response.json();
             fetchAdverts(data)
         }
+
     }, []);
 
     if(!advertList) {
