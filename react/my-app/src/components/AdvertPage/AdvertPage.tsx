@@ -63,6 +63,7 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
                         <div className="advert-description">
                             <h2>Описание</h2>
                             <p>{advert.description}</p>
+                            <Link to="/" className={"delete-button"} onClick={deleting}>x</Link>
 
                         </div>
                 </div>
@@ -88,8 +89,6 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
                     {isModalOpen &&  <Modal toggleModal={() => toggleModal(false) }>
                         <AdvertUpdate toggleModal={toggleModal} id={props.match.params.id}/>
                     </Modal>}
-                    <br />
-                    <Link to="/" className="buy-button" onClick={deleting} >Удалить</Link>
                 </div>
             </div>
         </div>
