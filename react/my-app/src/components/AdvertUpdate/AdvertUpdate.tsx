@@ -31,24 +31,27 @@ const AdvertCreate: React.FC<IProductUpdate> = (props) => {
         [name, price, description]
     )
     return (
-        <div className="container">
-            <h2>Новое объявление</h2>
+        <div className="advert-update">
+            <h2>Изменить объявление</h2>
             <section className="new_advert">
                 <form>
                     <div className="form-block">
-                        <label htmlFor="form-name">Введите название:</label>
+                        <label htmlFor="form-name">Название:<br />
                         <input id="form-name" required name="name" value = {name}
                                onChange={(event) => setName(event.target.value)}/>
+                        </label>
                     </div>
                     <div className="form-block">
-                        <label htmlFor="form-description">Описание:</label>
+                        <label htmlFor="form-description">Описание:<br />
                         <textarea id="form-description" name="description" required value = {description}
                                   onChange={(event) => setDescription(event.target.value)}/>
+                        </label>
                     </div>
                     <div className="form-block">
-                        <label htmlFor="form-price">Начальная цена:</label>
+                        <label htmlFor="form-price">Цена: <br />
                         <input id="form-price" name="price" value = {price}
                                onChange={(event) => setPrice(event.target.value)}/>
+                        </label>
                     </div>
                     <input className="submit-button" type="submit" value="Изменить" name="button"
                            onClick={onSubmit}/>
