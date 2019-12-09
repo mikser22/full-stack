@@ -27,8 +27,15 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
     }, []);
 
     const itemGet = React.useCallback(async () => {
+        const headers = {} as any
+        const token = window.localStorage.getItem('access')
+
+        if (token) {
+            headers.Authorization = `Bearer ${token}`
+        }
+        
         if (!advert) {
-            const response = await fetch(`${BASEURL}api/products/` + props.match.params.id);
+            const response = await fetch(`${BASEURL}api/products/` + props.match.params.id, {headers});
             const data = await response.json();
             console.log("advert page", data)
             fetchAdvert(data)

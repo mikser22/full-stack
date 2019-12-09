@@ -17,14 +17,22 @@ const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
     const [price, setPrice] = React.useState('');
     const [on_auction, setAuction] = React.useState('');
     const [category, setCategory] = React.useState('');
+    let headers = {} as any
+    const token = window.localStorage.getItem('access')
+
+    if (token) {
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    }
+    console.log(token)
     const onSubmit = React.useCallback(
         async (event) => {
             event.preventDefault() // из-за этого не работает проверка важных полей
-            const response = await fetch(`${BASEURL}api/products/`, {
+            const response = await fetch(`${BASEURL}api/my/`, {
                 method: 'post',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers,
                 body: JSON.stringify({ name, price, description, owner: 1 , on_auction})
             })
             const data = await response.json();
