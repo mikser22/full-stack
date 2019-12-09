@@ -17,7 +17,6 @@ interface IBoardProps {
 
 const Board: React.FC<IBoardProps> = (props) => {
     const {fetchAdverts, advertList} = props;
-
     React.useEffect(() => {
         void itemsGet(props.match.params.id)
 

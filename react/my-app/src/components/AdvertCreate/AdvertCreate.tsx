@@ -27,7 +27,7 @@ const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, price, description, owner: 1 , on_auction})
+                body: JSON.stringify({ name, price, description, on_auction, category})
             })
             const data = await response.json();
             fetchNewAdvert(data);
@@ -54,15 +54,15 @@ const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
                     </div>
                     <div className="form-block">
                         <label htmlFor="form-category">Категория:<br />
-                            <select id="selector" required >
+                            <select id="selector" required onChange={(e) => {setCategory(e.target.value)}}>
                                 <option selected disabled >Выберите категорию</option>
-                                <option value="Недвижимость" >Недвижимость</option>
-                                <option value="Транспорт">Транспорт</option>
-                                <option value="Работа">Работа</option>
-                                <option value="Бытовая электроника">Бытовая электроника</option>
-                                <option value="Животные">Животные</option>
-                                <option value="Хобби и отдых">Хобби и отдых</option>
-                                <option value="Для дома и дачи">Для дома и дачи</option>
+                                <option value={1} >Недвижимость</option>
+                                <option value={2}>Транспорт</option>
+                                <option value={3}>Работа</option>
+                                <option value={4}>Бытовая электроника</option>
+                                <option value={5}>Животные</option>
+                                <option value={6}>Хобби и отдых</option>
+                                <option value={7}>Для дома и дачи</option>
                             </select>
                         </label>
                     </div>

@@ -13,7 +13,6 @@ const AdvertCard: React.FC<IAdvertCard> = (props) => {
         return null;
     }
     const {id, name, price, description, on_auction} = adverts;
-    console.log(adverts);
     return (
         <div className="main-advert">
             {on_auction ? <div className="advert-card--auction">Аукцион</div> : ''}

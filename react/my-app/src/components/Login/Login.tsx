@@ -1,7 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Login: React.FC = () => {
+interface ILoginProps {
+    history: {
+        push: (url: string) => void
+    }
+}
+
+const Login: React.FC<ILoginProps> = (props) => {
+    console.log(props);
+    const {history} = props;
     const [username, setUsername] = React.useState('')
     const [password, setPassword] = React.useState('')
 
@@ -18,13 +26,11 @@ const Login: React.FC = () => {
                 })
             })
 
-            console.log(response)
-
             const { access, refresh } = await response.json()
 
             window.localStorage.setItem('access', access)
             window.localStorage.setItem('refresh', refresh)
-
+            history.push('')
         },
         [username, password]
     )
