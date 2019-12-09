@@ -12,6 +12,7 @@ interface IAdvertCreate {
 
 const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
     const {history, fetchNewAdvert} = props;
+    const token = window.localStorage.getItem('access')
     const [name, setName] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [price, setPrice] = React.useState('');
@@ -20,9 +21,10 @@ const AdvertCreate: React.FC<IAdvertCreate> = (props) => {
     const onSubmit = React.useCallback(
         async (event) => {
             event.preventDefault() // из-за этого не работает проверка важных полей
-            const response = await fetch(`${BASEURL}api/products/`, {
+            const response = await fetch(`${BASEURL}api/my/`, {
                 method: 'post',
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ name, price, description, owner: 1 , on_auction})
