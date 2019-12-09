@@ -21,19 +21,18 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
     const { deleteAdvert, advert, fetchAdvert} = props;
     const [isModalOpen, toggleModal] = React.useState()
 
+    const headers = {} as any
+    const token = window.localStorage.getItem('access')
+
+    if (token) {
+        headers.Authorization = `Bearer ${token}`
+    }
 
     useEffect(() => {
         void itemGet()
     }, []);
 
     const itemGet = React.useCallback(async () => {
-        const headers = {} as any
-        const token = window.localStorage.getItem('access')
-
-        if (token) {
-            headers.Authorization = `Bearer ${token}`
-        }
-        
         if (!advert) {
             const response = await fetch(`${BASEURL}api/products/` + props.match.params.id, {headers});
             const data = await response.json();
