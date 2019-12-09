@@ -1,2 +1,4 @@
 .idea
 fs
+__pycache__/
+.vscode
