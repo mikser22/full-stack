@@ -28,6 +28,6 @@ class ProductSelfViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
   def get_queryset(self):
-    queryset = super(ProductSelfViewSet, self).get_queryset()
-    return queryset.filter(owner=self.request.user)
+        queryset = super(ProductSelfViewSet, self).get_queryset()
+        return queryset.filter(owner=self.request.user)
 
