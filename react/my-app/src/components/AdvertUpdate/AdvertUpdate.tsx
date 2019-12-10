@@ -12,6 +12,7 @@ const AdvertCreate: React.FC<IProductUpdate> = (props) => {
     const [name, setName] = React.useState(item.name);
     const [description, setDescription] = React.useState(item.description);
     const [price, setPrice] = React.useState(item.price+'');
+    const token = window.localStorage.getItem('access')
     const onSubmit = React.useCallback(
         async (event) => {
             event.preventDefault()
@@ -20,6 +21,7 @@ const AdvertCreate: React.FC<IProductUpdate> = (props) => {
             const response = await fetch(`${BASEURL}api/products/${id}/`, {
                 method: 'put',
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ name, price, description})

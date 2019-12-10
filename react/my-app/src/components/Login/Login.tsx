@@ -8,7 +8,6 @@ interface ILoginProps {
 }
 
 const Login: React.FC<ILoginProps> = (props) => {
-    console.log(props);
     const {history} = props;
     const [username, setUsername] = React.useState('')
     const [password, setPassword] = React.useState('')
@@ -57,7 +56,7 @@ const Login: React.FC<ILoginProps> = (props) => {
                     <input placeholder="Телефон или электронная почта" name="name" value={username} onChange={onChangeUsername}/>
                 </label><br /><br />
                 <label className="login-label">Пароль:<br />
-                    <input placeholder="Ваш пароль" name= "password" value={password} onChange={onChangePassword}/>
+                    <input placeholder="Ваш пароль" name= "password" value={password} onChange={onChangePassword} type="password"/>
                 </label><br />
                 <Link to="/login" className="enter-button" onClick={onSubmit}>Войти</Link>
             </div>

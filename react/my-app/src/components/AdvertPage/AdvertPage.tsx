@@ -36,7 +36,6 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
         if (!advert) {
             const response = await fetch(`${BASEURL}api/products/` + props.match.params.id, {headers});
             const data = await response.json();
-            console.log("advert page", data)
             fetchAdvert(data)
         }
 
@@ -48,6 +47,7 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
             const response = await fetch(`${BASEURL}api/products/${props.match.params.id}`, {
                 method: 'delete',
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ id: props.match.params.id })
@@ -75,7 +75,7 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
                 </div>
                 <div className="advert-info">
                     {!advert.on_auction? <div className="main-advert-information"><span>Цена:</span>{advert.price}</div> :
-                    <Auction currentPrice={150} lastPersonId={2} startPriсe={100} endDate={"12.12.2019 00:00"}/>}
+                    <Auction currentPrice={advert.price} lastPersonId={2} startPriсe={100} endDate={advert.creation_date}/>}
                     <div className="main-advert-information">
                         <span>Характеристики:</span>
                         <br />
