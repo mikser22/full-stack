@@ -1,4 +1,5 @@
 .idea
 fs
+deploy
 __pycache__/
 .vscode
