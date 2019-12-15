@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path, include, re_path
 from product.views import ProductViewSet, ProductSelfViewSet, ProductCategoryViewSet
 from user_info.views import InfoViewSet
@@ -36,5 +38,8 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
+#     re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += re_path(r'^.*', TemplateView.as_view(template_name='index.html')),

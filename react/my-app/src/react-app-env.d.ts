@@ -5,7 +5,8 @@ interface Item {
     description: string,
     price: any,
     on_auction: boolean,
-    creation_date : string
+    creation_date : string,
+    image? : string
 }
 
 interface IAdvertState {

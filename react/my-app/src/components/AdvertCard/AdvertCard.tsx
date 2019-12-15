@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from "react-router-dom";
-import image from "../../images/test_advert.jpg"
+import defaultImage from "../../images/test_advert.jpg"
 
 interface IAdvertCard {
     adverts: Item
@@ -12,7 +12,7 @@ const AdvertCard: React.FC<IAdvertCard> = (props) => {
     if(!adverts) {
         return null;
     }
-    const {id, name, price, description, on_auction} = adverts;
+    const {id, name, price, description, on_auction, image} = adverts;
     return (
         <div className="main-advert">
             {on_auction ? <div className="advert-card--auction">Аукцион</div> : ''}

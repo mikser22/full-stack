@@ -11,6 +11,7 @@ class Product(models.Model):
     category = models.IntegerField(default=0)
     on_auction = models.IntegerField(default=0)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(default=0)
 
     def __str__(self):
         return self.name

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {BASEURL} from '../../config'
 
 interface ILoginProps {
     history: {
@@ -11,10 +12,9 @@ const Login: React.FC<ILoginProps> = (props) => {
     const {history} = props;
     const [username, setUsername] = React.useState('')
     const [password, setPassword] = React.useState('')
-
     const onSubmit = React.useCallback(
         async (event) => {
-            const response = await fetch('http://localhost:8000/api/token/', {
+            const response = await fetch(`${BASEURL}api/token/`, {
                 method: 'post',
                 headers: {
                 'Content-Type': 'application/json'
@@ -30,6 +30,7 @@ const Login: React.FC<ILoginProps> = (props) => {
             window.localStorage.setItem('access', access)
             window.localStorage.setItem('refresh', refresh)
             history.push('')
+            window.location.reload()
         },
         [username, password]
     )

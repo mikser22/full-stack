@@ -21,12 +21,7 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
     const { deleteAdvert, advert, fetchAdvert} = props;
     const [isModalOpen, toggleModal] = React.useState()
 
-    const headers = {} as any
-    const token = window.localStorage.getItem('access')
-
-    if (token) {
-        headers.Authorization = `Bearer ${token}`
-    }
+    const headers = {} as any;
 
     useEffect(() => {
         void itemGet()
@@ -47,7 +42,6 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
             const response = await fetch(`${BASEURL}api/products/${props.match.params.id}`, {
                 method: 'delete',
                 headers: {
-                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ id: props.match.params.id })
@@ -59,7 +53,6 @@ const AdvertPage: React.FC<AdvertPageProps> = (props) => {
     if (!advert) {
         return <div>loading</div>
     }
-
     return (
         <div className="container">
             <h2>{advert.name}</h2>

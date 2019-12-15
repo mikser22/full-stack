@@ -23,19 +23,13 @@ const Board: React.FC<IBoardProps> = (props) => {
     }, [props.match.params.id]);
 
     const itemsGet = React.useCallback(async (id) => {
-        const headers = {} as any
-        const token = window.localStorage.getItem('access')
-
-        if (token) {
-            headers.Authorization = `Bearer ${token}`
-        }
         let response;
         if(id){
-            response = await fetch(`${BASEURL}api/category?id=${id}`, {headers});
+            response = await fetch(`${BASEURL}api/category?id=${id}`);
             const data = await response.json();
             fetchAdverts(data)
         } else {
-            response = await fetch(`${BASEURL}api/products/`, {headers});
+            response = await fetch(`${BASEURL}api/products/`);
             const data = await response.json();
             fetchAdverts(data)
         }
