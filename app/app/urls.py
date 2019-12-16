@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.urls import path, include, re_path
 from product.views import ProductViewSet, ProductSelfViewSet, ProductCategoryViewSet, ProductUsersViewSet
 from user_info.views import InfoViewSet
+from core.views import UserViewSet
 from rest_framework import routers
 from django.views.generic import TemplateView
 
@@ -31,6 +32,7 @@ router = routers.DefaultRouter()
 router.register('products', ProductViewSet, 'Product')
 router.register('my', ProductSelfViewSet, 'My')
 router.register('info', InfoViewSet, 'Info')
+router.register('users', UserViewSet, 'users')
 router.register('category', ProductCategoryViewSet, 'Category')
 router.register('userproducts', ProductUsersViewSet, 'Userproducts')
 
