@@ -5,6 +5,7 @@ import Modal from "../Modal/Modal";
 import AdvertUpdate from "../AdvertUpdate";
 import { BASEURL } from "../../config";
 import Auction from "../Auction";
+import Message from "../Message";
 
 interface AdvertPageProps {
   match: {
@@ -20,6 +21,9 @@ interface AdvertPageProps {
 const AdvertPage: React.FC<AdvertPageProps> = props => {
   const { deleteAdvert, advert, fetchAdvert } = props;
   const [isModalOpen, toggleModal] = React.useState();
+  const [isErrorModalOpen, toggleErrorModal] = React.useState();
+  const [errorCode, setErrorCode] = React.useState(0);
+  const [errorText, setErrorText] = React.useState("");
 
   const headers = {} as any;
   const token = window.localStorage.getItem("access");
@@ -35,17 +39,16 @@ const AdvertPage: React.FC<AdvertPageProps> = props => {
   const itemGet = React.useCallback(async () => {
     if (!advert) {
       const response = await fetch(
-        `${BASEURL}api/products/` + props.match.params.id,
+        `${BASEURL}api/products/` + props.match.params.id + "/",
         { headers }
       );
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       fetchAdvert(data);
     }
   }, []);
   const deleting = React.useCallback(async event => {
     event.preventDefault();
-    deleteAdvert(props.match.params.id);
     const response = await fetch(
       `${BASEURL}api/products/${props.match.params.id}/`,
       {
@@ -57,15 +60,22 @@ const AdvertPage: React.FC<AdvertPageProps> = props => {
         body: JSON.stringify({ id: props.match.params.id })
       }
     );
-    window.history.back();
+    console.log(response);
+    if (response.status == 200) {
+      deleteAdvert(props.match.params.id);
+      window.history.back();
+    } else {
+      setErrorCode(response.status);
+      setErrorText(response.statusText);
+      toggleErrorModal(true);
+    }
   }, []);
   if (!advert) {
     return <div>loading</div>;
   }
   const ownerUserName = advert.owner.username;
-  const currentUserName = window.localStorage.getItem('user')
+  const currentUserName = window.localStorage.getItem("user");
   const isOwner = ownerUserName == currentUserName;
-  console.log("cur", currentUserName, "owner", ownerUserName)
   return (
     <div className="container">
       <h2>{advert.name}</h2>
@@ -75,9 +85,11 @@ const AdvertPage: React.FC<AdvertPageProps> = props => {
           <div className="advert-description">
             <h2>Описание</h2>
             <p>{advert.description}</p>
-            {isOwner && <Link to="/" className={"delete-button"} onClick={deleting}>
-              x
-            </Link>}
+            {isOwner && (
+              <div className={"delete-button"} onClick={deleting}>
+                x
+              </div>
+            )}
           </div>
         </div>
         <div className="advert-info">
@@ -102,14 +114,25 @@ const AdvertPage: React.FC<AdvertPageProps> = props => {
             <br />
             <br />
           </div>
-          {isOwner && <button className="buy-button" onClick={() => toggleModal(true)}>
-            Изменить
-          </button>}
+          {isOwner && (
+            <button className="buy-button" onClick={() => toggleModal(true)}>
+              Изменить
+            </button>
+          )}
           {isModalOpen && (
-            <Modal toggleModal={() => toggleModal(false)}>
+            <Modal toggleModal={() => toggleModal(false)} isError={false}>
               <AdvertUpdate
                 toggleModal={toggleModal}
                 id={props.match.params.id}
+              />
+            </Modal>
+          )}
+          {isErrorModalOpen && (
+            <Modal toggleModal={() => toggleErrorModal(false)} isError={true}>
+              <Message
+                errorText={errorText}
+                errorCode={errorCode}
+                needAdditional={true}
               />
             </Modal>
           )}

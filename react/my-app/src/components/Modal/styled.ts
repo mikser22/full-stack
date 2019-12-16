@@ -35,9 +35,9 @@ export const Wrapper = styled.div`
   animation-duration: 0.5s;
 `
 
-export const Inner = styled.div`
+export const Inner = styled.div<{isError: boolean}>`
   border-radius: 8px;
-  background-color: white;
+  background-color: ${({isError}) => isError ? '#ff433f' : 'white'};
   cursor: auto;
   animation-name: ${rise};
   animation-duration: 0.3s;

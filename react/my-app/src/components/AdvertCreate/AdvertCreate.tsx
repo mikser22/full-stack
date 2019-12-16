@@ -2,6 +2,8 @@ import React from "react";
 import { BASEURL } from "../../config";
 import { useDropzone } from "react-dropzone";
 import { Link } from "react-router-dom";
+import Modal from "../Modal/Modal";
+import Message from "../Message";
 
 interface IAdvertCreate {
   history: {
@@ -21,36 +23,46 @@ const AdvertCreate: React.FC<IAdvertCreate> = props => {
   const [category, setCategory] = React.useState("");
   const [image, setImage] = React.useState<File | null>(null);
 
+  const [isModalOpen, toggleModal] = React.useState(false);
+  const [errorCode, setErrorCode] = React.useState(0);
+  const [errorText, setErrorText] = React.useState('');
+
   const onDrop = React.useCallback(acceptedFiles => {
     if (acceptedFiles && acceptedFiles[0]) {
-      setImage(acceptedFiles[0])
+      setImage(acceptedFiles[0]);
     }
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-
+  let response;
   const onSubmit = React.useCallback(
     async event => {
       const formData = new FormData();
-      formData.append('name', name);
-      formData.append('price', price);
-      formData.append('description', description);
-      formData.append('category', category);
-      formData.append('on_auction', on_auction);
-      if(image){
-        formData.append('image', image);
+      formData.append("name", name);
+      formData.append("price", price);
+      formData.append("description", description);
+      formData.append("category", category);
+      formData.append("on_auction", on_auction);
+      if (image) {
+        formData.append("image", image);
       }
       event.preventDefault(); // из-за этого не работает проверка важных полей
-      const response = await fetch(`${BASEURL}api/my/`, {
+      response = await fetch(`${BASEURL}api/my/`, {
         method: "post",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`
         },
         body: formData
       });
       const data = await response.json();
-      console.log(data)
-      fetchNewAdvert(data);
-      // history.push("");
+      console.log(data, response);
+      if(response.status >= 300 || response.status < 200){
+        setErrorText(response.statusText)
+        setErrorCode(response.status)
+        toggleModal(true)
+      } else {
+        fetchNewAdvert(data);
+        history.push("");
+      }
     },
     [category, on_auction, name, price, description, image]
   );
@@ -98,7 +110,9 @@ const AdvertCreate: React.FC<IAdvertCreate> = props => {
                   setCategory(e.target.value);
                 }}
               >
-                <option selected value={1}>Недвижимость</option>
+                <option selected value={1}>
+                  Недвижимость
+                </option>
                 <option value={2}>Транспорт</option>
                 <option value={3}>Работа</option>
                 <option value={4}>Бытовая электроника</option>
@@ -126,10 +140,10 @@ const AdvertCreate: React.FC<IAdvertCreate> = props => {
               Изображение:
               <br />
               <div {...getRootProps()}>
-                <input
-                  {...getInputProps()}
-                />
-                <div className="image-field">{image && image.name || "Файл не выбран"}</div>
+                <input {...getInputProps()} />
+                <div className="image-field">
+                  {(image && image.name) || "Файл не выбран"}
+                </div>
               </div>
             </label>
           </div>
@@ -172,6 +186,13 @@ const AdvertCreate: React.FC<IAdvertCreate> = props => {
           />
         </form>
       </section>
+      <div>
+        {isModalOpen && (
+          <Modal toggleModal={() => toggleModal(false)} isError={true}>
+            <Message errorText={errorText} errorCode={errorCode} needAdditional={true}/>
+          </Modal>
+        )}
+      </div>
     </div>
   );
 };

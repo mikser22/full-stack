@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {BASEURL} from '../../config'
+import Modal from "../Modal/Modal";
+import Message from "../Message";
 
 interface ILoginProps {
     history: {
@@ -12,6 +14,11 @@ const Login: React.FC<ILoginProps> = (props) => {
     const {history} = props;
     const [username, setUsername] = React.useState('')
     const [password, setPassword] = React.useState('')
+
+    const [isModalOpen, toggleModal] = React.useState(false);
+    const [errorCode, setErrorCode] = React.useState(0);
+    const [errorText, setErrorText] = React.useState('');
+
     const onSubmit = React.useCallback(
         async (event) => {
             const response = await fetch(`${BASEURL}api/token/`, {
@@ -25,13 +32,20 @@ const Login: React.FC<ILoginProps> = (props) => {
                 })
             })
             const { access, refresh } = await response.json()
+            if(response.status == 200) {
+                window.localStorage.setItem('user', username)
 
-            window.localStorage.setItem('user', username)
+                window.localStorage.setItem('access', access)
+                window.localStorage.setItem('refresh', refresh)
+                history.push('')
+                window.location.reload()
+            } else{
+                setErrorCode(response.status);
+                setErrorText("Неверный логин или пароль");
+                toggleModal(true)
+            }
 
-            window.localStorage.setItem('access', access)
-            window.localStorage.setItem('refresh', refresh)
-            history.push('')
-            window.location.reload()
+
         },
         [username, password]
     )
@@ -61,6 +75,13 @@ const Login: React.FC<ILoginProps> = (props) => {
                     <input placeholder="Ваш пароль" name= "password" value={password} onChange={onChangePassword} type="password"/>
                 </label><br />
                 <Link to="/login" className="enter-button" onClick={onSubmit}>Войти</Link>
+            </div>
+            <div>
+                {isModalOpen && (
+                    <Modal toggleModal={() => toggleModal(false)} isError={true}>
+                        <Message errorText={errorText} errorCode={errorCode} needAdditional={false}/>
+                    </Modal>
+                )}
             </div>
         </div>
     )

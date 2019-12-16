@@ -1,5 +1,7 @@
 import React from 'react'
 import {BASEURL} from "../../config";
+import Modal from "../Modal/Modal";
+import Message from "../Message";
 
 interface IProductUpdate {
     fetchAdvert : (advert : Item) => void
@@ -12,6 +14,11 @@ const AdvertCreate: React.FC<IProductUpdate> = (props) => {
     const [name, setName] = React.useState(item.name);
     const [description, setDescription] = React.useState(item.description);
     const [price, setPrice] = React.useState(item.price+'');
+
+    const [isErrorModalOpen, toggleErrorModal] = React.useState();
+    const [errorCode, setErrorCode] = React.useState(0);
+    const [errorText, setErrorText] = React.useState("");
+
     const token = window.localStorage.getItem('access')
     const onSubmit = React.useCallback(
         async (event) => {
@@ -26,9 +33,16 @@ const AdvertCreate: React.FC<IProductUpdate> = (props) => {
                 },
                 body: JSON.stringify({ name, price, description})
             })
-            const data: Item = await response.json();
-            fetchAdvert(data);
-            toggleModal(false);
+            if(response.status >= 200 && response.status < 300){
+                const data: Item = await response.json();
+                fetchAdvert(data);
+                toggleModal(false);
+            } else {
+                setErrorCode(response.status)
+                setErrorText(response.statusText)
+                toggleErrorModal(true)
+            }
+
         },
         [name, price, description]
     )
@@ -59,6 +73,15 @@ const AdvertCreate: React.FC<IProductUpdate> = (props) => {
                            onClick={onSubmit}/>
                 </form>
             </section>
+            {isErrorModalOpen && (
+                <Modal toggleModal={() => toggleErrorModal(false)} isError={true}>
+                    <Message
+                        errorText={errorText}
+                        errorCode={errorCode}
+                        needAdditional={true}
+                    />
+                </Modal>
+            )}
         </div>
     )
 };

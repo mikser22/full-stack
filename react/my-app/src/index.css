@@ -473,6 +473,15 @@ footer {
 .delete-button:active{
   color: white;
 }
+.error-message{
+  width: 400px;
+  min-height: 200px;
+  font-size: 25px;
+    text-align: center;
+    padding: 10px;
+    font-weight: 600;
+
+}
 
 
 @media screen and (max-width: 970px) {
