@@ -18,6 +18,15 @@ class ProductCategoryViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
         return queryset.filter(category=self.request.query_params['id'])
 
 
+class ProductUsersViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        queryset = super(ProductUsersViewSet, self).get_queryset()
+        if('id' not in self.request.query_params):
+            return queryset
+        return queryset.filter(owner=self.request.query_params['id'])
 
 
 class ProductSelfViewSet(viewsets.ModelViewSet):

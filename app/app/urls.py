@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include, re_path
-from product.views import ProductViewSet, ProductSelfViewSet, ProductCategoryViewSet
+from product.views import ProductViewSet, ProductSelfViewSet, ProductCategoryViewSet, ProductUsersViewSet
 from user_info.views import InfoViewSet
 from rest_framework import routers
 from django.views.generic import TemplateView
@@ -32,6 +32,7 @@ router.register('products', ProductViewSet, 'Product')
 router.register('my', ProductSelfViewSet, 'My')
 router.register('info', InfoViewSet, 'Info')
 router.register('category', ProductCategoryViewSet, 'Category')
+router.register('userproducts', ProductUsersViewSet, 'Userproducts')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,4 +43,3 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
