@@ -12,9 +12,3 @@ class UserViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
   queryset = User.objects.all()
   serializer_class = UserSerializer
   permission_classes = [AllowAny]
-
-  @action(detail=False)
-  def current(self, request, pk=None):
-    print(self.request.user, request.user)
-    serializer = UserSerializer(self.request.user)
-    return Response(serializer.data)
