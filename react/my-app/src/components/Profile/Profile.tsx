@@ -2,8 +2,34 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import image from "../../images/test_advert.jpg";
 import photo from "../../images/noavatar.jpg";
+import {BASEURL} from "../../config";
+import AdvertCard from "../AdvertCard";
 
-const Profile: React.FC = () => {
+
+interface IProfile {
+    fetchAdverts: (adverts : Item[]) => void
+    advertList: number[]
+    match: {
+        params: {
+            id: number
+        }
+    }
+}
+
+const Profile: React.FC<IProfile> = (props) => {
+    const {fetchAdverts, advertList} = props
+    React.useEffect(() => {
+        void itemsGet(props.match.params.id)
+
+    }, [props.match.params.id]);
+    const itemsGet = React.useCallback(async (id) => {
+        const response = await fetch(`${BASEURL}api/userproducts?id=${id}`);
+        const data = await response.json();
+        console.log(data)
+        fetchAdverts(data)
+
+    }, []);
+
     return (
         <div className="container">
             <div className="content">
@@ -24,57 +50,24 @@ const Profile: React.FC = () => {
                         </div>
                 </div>
             </div>
-            <h3>Другие объявления пользователя:</h3>
+            <h3>Все объявления пользователя:</h3>
             <div className="profile-other-adverts">
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
-                <div className="main-advert">
-                    <Link to="/advertpage">
-                        <h3>Объявление</h3>
-                        <img src={image} alt="kek" />
-                        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>
-                    </Link>
-                </div>
+                {
+                    advertList.map((advertId, index) => (
+                        <AdvertCard key={index} advertId={advertId}/>
+                    ))
+                }
+
+
+
+                {/*<div className="main-advert">*/}
+                {/*    <Link to="/advertpage">*/}
+                {/*        <h3>Объявление</h3>*/}
+                {/*        <img src={image} alt="kek" />*/}
+                {/*        <p>Ну купи гараж,<br /> плез<br />эээ, слишь<br /> купил быстро!</p>*/}
+                {/*    </Link>*/}
+                {/*</div>*/}
+
             </div>
         </div>
     )

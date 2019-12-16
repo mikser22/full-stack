@@ -110,7 +110,7 @@ const AdvertPage: React.FC<AdvertPageProps> = props => {
           <div className="main-advert-information">
             <br />
             <span>Контакты: </span>
-            <Link to="/profile">Профиль пользователя</Link>
+            <Link to={`/profile/${advert.owner.id}`}>Профиль пользователя</Link>
             <br />
             <br />
           </div>
