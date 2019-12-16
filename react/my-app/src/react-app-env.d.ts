@@ -6,7 +6,8 @@ interface Item {
     price: any,
     on_auction: boolean,
     creation_date : string,
-    image? : string
+    image? : string,
+    owner: {id:nimber, username:string}
 }
 
 interface IAdvertState {

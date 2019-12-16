@@ -24,8 +24,9 @@ const Login: React.FC<ILoginProps> = (props) => {
                     password
                 })
             })
-
             const { access, refresh } = await response.json()
+
+            window.localStorage.setItem('user', username)
 
             window.localStorage.setItem('access', access)
             window.localStorage.setItem('refresh', refresh)

@@ -22,7 +22,7 @@ const Header: React.FC = () => {
                 <span className="main-left-menu">
                     <Link className="main-menu" to="/">Главная</Link>
                     <Link className="main-menu" to="/advertcreate">Создать объявление</Link>
-                    <a className="main-menu" href='https://ru.wikipedia.org/wiki/Помощь' target="_blank">Помощь</a>
+                    {/*<a className="main-menu" href='https://ru.wikipedia.org/wiki/Помощь' target="_blank">Помощь</a>*/}
                 </span>
                 <span className="autorization">
                     {!isAuth && <Link className="main-menu" to="/login">Войти</Link>}

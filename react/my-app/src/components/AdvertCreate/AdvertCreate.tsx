@@ -48,8 +48,9 @@ const AdvertCreate: React.FC<IAdvertCreate> = props => {
         body: formData
       });
       const data = await response.json();
+      console.log(data)
       fetchNewAdvert(data);
-      history.push("");
+      // history.push("");
     },
     [category, on_auction, name, price, description, image]
   );
@@ -97,10 +98,7 @@ const AdvertCreate: React.FC<IAdvertCreate> = props => {
                   setCategory(e.target.value);
                 }}
               >
-                <option selected disabled>
-                  Выберите категорию
-                </option>
-                <option value={1}>Недвижимость</option>
+                <option selected value={1}>Недвижимость</option>
                 <option value={2}>Транспорт</option>
                 <option value={3}>Работа</option>
                 <option value={4}>Бытовая электроника</option>
