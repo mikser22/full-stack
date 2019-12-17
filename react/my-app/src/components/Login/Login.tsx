@@ -37,7 +37,19 @@ const Login: React.FC<ILoginProps> = (props) => {
 
                 window.localStorage.setItem('access', access)
                 window.localStorage.setItem('refresh', refresh)
-                history.push('')
+
+                const response2 = await fetch(`${BASEURL}api/my_user/`, {
+                    method: 'get',
+                    headers: {
+                        Authorization: `Bearer ${access}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const res = await response2.json()
+                window.localStorage.setItem('user_id', res[0].id)
+
+
+                history.push(`/profile/${res[0].id}`)
                 window.location.reload()
             } else{
                 setErrorCode(response.status);
@@ -56,7 +68,7 @@ const Login: React.FC<ILoginProps> = (props) => {
         },
         [username]
     )
-    
+
     const onChangePassword = React.useCallback(
         (event) => {
             setPassword(event.target.value)

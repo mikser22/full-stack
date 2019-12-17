@@ -26,6 +26,7 @@ const App: React.FC = () => {
                   <Route path="/login" component={Login} />
                   <Route path="/registration" component={Registration} />
                   <Route path="/profile/:id" component={Profile} />
+                  <Route path="/profile/" component={Profile} />
                   <Route path="/advertcreate" component={AdvertCreate} />
                   <footer> &#169; 2019</footer>
               </Router>

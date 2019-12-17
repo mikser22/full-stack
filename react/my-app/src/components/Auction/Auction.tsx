@@ -30,7 +30,7 @@ const Auction: React.FC<IAuction> = (props) => {
                 </div>
                 <div>
                     <span>Последнее предложение: </span>
-                    <Link to="/profile">username3228</Link>
+                    <Link to="/profile/1ди пихаеют зависимости">username3228</Link>
                 </div>
             </div>
             <h3>Вы можете учавствовать</h3>

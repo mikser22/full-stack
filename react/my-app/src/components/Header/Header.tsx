@@ -11,6 +11,7 @@ const Header: React.FC = () => {
         window.localStorage.clear();
         setIsAuth( undefined);
     }
+    const user_id = window.localStorage.getItem("user_id")
 
     return (
         <div className="header-info">
@@ -27,7 +28,7 @@ const Header: React.FC = () => {
                 <span className="autorization">
                     {!isAuth && <Link className="main-menu" to="/login">Войти</Link>}
                     {!isAuth && <Link className="main-menu" to="/registration">Регистрация</Link>}
-                    {isAuth && <Link className="main-menu" to="/" >Профиль</Link>}
+                    {isAuth && <Link className="main-menu" to={`/profile/${user_id}`} >Профиль</Link>}
                     {isAuth && <Link className="main-menu" to="/" onClick={handler}>Выйти</Link>}
                 </span>
             </span>
