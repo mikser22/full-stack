@@ -64,10 +64,10 @@ const Registration: React.FC<IRegistration> = (props) => {
                 <label className="login-label">Пароль:<br />
                     <input placeholder="Ваш пароль" type="password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
                 </label><br /><br />
-                <label className="login-label">Пароль:<br />
+                <label className="login-label">Имя:<br />
                     <input placeholder="Ваше имя" value={name} onChange={(e)=> setName(e.target.value)}/>
                 </label><br /><br />
-                <label className="login-label">Пароль:<br />
+                <label className="login-label">Фамилия:<br />
                     <input placeholder="Ваша фамилия" value={lastName} onChange={(e)=> setLastName(e.target.value)}/>
                 </label><br /><br />
                 <label className="login-label">Email:<br />
